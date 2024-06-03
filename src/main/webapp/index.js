@@ -288,10 +288,10 @@ document.getElementById("searchIcon").addEventListener("click", event =>{
     closeOutSearchBar(target);
 });
 
-document.getElementById("exitButton").addEventListener("click", event=>{
-    let target = document.getElementById("searchOptions");
-    closeOutSearchBar(target);
-});
+// document.getElementById("exitButton").addEventListener("click", event=>{
+//     let target = document.getElementById("searchOptions");
+//     closeOutSearchBar(target);
+// });
 
 
 document.getElementById("filterButton").addEventListener("click", ()=>{

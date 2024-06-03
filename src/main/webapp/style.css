@@ -2,14 +2,15 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(132, 21, 21);
+    background-color: rgb(168, 107, 107);
     display: flex;
     flex-direction: column;
     align-content: center;
 }
 #mainMapDiv{
-    margin-right: 30%;
-    margin-left: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-left: 50px;
     padding-right: 50px;
     width: 900px;
@@ -17,8 +18,8 @@ body{
 #semi-Body{
     margin-left:  5%;
     margin-right: 5%;
-    display: flex;
     background-color: rgb(246, 243, 240);
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -28,6 +29,23 @@ body{
     margin-right: 10%;
     width: 100%;
     display: flex;
+}
+#searchOptions{
+    margin-left: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: whitesmoke;
+    height: 25px;
+    width:360px;
+    position: absolute;
+    top: -25px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s ease-out, top 0.5s ease-out;
+}
+.disabled{
+    visibility: hidden;
 }
 .enumerate{
     width: 200px;
@@ -47,8 +65,7 @@ body{
     display: flex;
     overflow: hidden;
     white-space: nowrap;
-/* position: relative; */
-padding: 0;
+    padding: 0;
     margin: 0;
 }
 .enumerate:hover{
@@ -58,25 +75,6 @@ padding: 0;
     width: 70px;
     height: 35px;
 }
-#FilterLogoSpan1{
-    color: rgb(84, 84, 84);
-    height: 5px;
-    pointer-events: none;
-}
-#FilterLogoSpan2{
-    color: rgb(84, 84, 84);
-    height: 5px;
-    pointer-events: none;
-
-}
-
-#FilterLogoSpan3{
-    color: rgb(84, 84, 84);
-    height: 5px;
-    pointer-events: none;
-
-}
-
 .scrollBtn{
     width: 30px;
     height: 30px;
@@ -131,9 +129,6 @@ padding: 0;
     visibility: visible;
 }
 
-.disabled{
-    visibility: hidden;
-}
 #break{
     background-color: gray;
     width: 100%;
@@ -159,30 +154,6 @@ padding: 0;
     color: hsl(0, 0%, 80%);
 }
 
-
-#searchOptions{
-    margin-left: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: whitesmoke;
-    height: 25px;
-    width:360px;
-    position: absolute;
-    top: -25px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    overflow: hidden;
-    transition: height 0.2s ease-out, top 0.5s ease-out;
-}
-#closeFiltersButton{
-    /* margin-top: 90%; */
-    position: absolute;
-}
-#exitButton{
-    float: right;
-    border: none;
-}
-
 .searchBarBtns{
     height: 20px;
     width: 50px;
@@ -192,14 +163,15 @@ padding: 0;
     box-shadow: 1px 1px 0 black;
     color: rgb(78, 78, 78);
 }
+
 .searchBarBtns:active{
     box-shadow: none;
     transform: translate(1px, 1px);
 }
-
 #innerFilterDivInstance1{
     max-width: 92px;
 }
+
 .ftListDiv{
     display: flex;
     align-items: center;
@@ -210,10 +182,6 @@ padding: 0;
     padding-top: 2px;
     padding-bottom: 2px;
 }
-
-
-
-
 .tileText {
     padding: 10px;
     margin-top: -30px;
@@ -221,4 +189,10 @@ padding: 0;
     font-size: 14px;
     text-align: left;
     color: rgb(124, 124, 124);
+}
+
+#FilterLogoSpan1, #FilterLogoSpan2, #FilterLogoSpan3{
+    color: rgb(84, 84, 84);
+    height: 5px;
+    pointer-events: none;
 }
