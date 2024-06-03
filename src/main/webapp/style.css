@@ -1,8 +1,19 @@
 body{
-    margin: 0%;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(132, 21, 21);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
 }
-
+#mainMapDiv{
+    margin-right: 30%;
+    margin-left: 30%;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 900px;
+}
 #semi-Body{
     margin-left:  5%;
     margin-right: 5%;
@@ -10,6 +21,13 @@ body{
     background-color: rgb(246, 243, 240);
     flex-direction: column;
     align-items: center;
+}
+#soapBox{
+    background-color: rgb(246, 243, 240);
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 100%;
+    display: flex;
 }
 .enumerate{
     width: 200px;
@@ -29,8 +47,8 @@ body{
     display: flex;
     overflow: hidden;
     white-space: nowrap;
-    /* position: relative; */
-    padding: 0;
+/* position: relative; */
+padding: 0;
     margin: 0;
 }
 .enumerate:hover{
@@ -51,6 +69,7 @@ body{
     pointer-events: none;
 
 }
+
 #FilterLogoSpan3{
     color: rgb(84, 84, 84);
     height: 5px;
@@ -64,7 +83,6 @@ body{
     border-radius: 15px;
     cursor: pointer;
 }
-
 #featureListDiv{
     padding-left: 15px;
     padding-right: 15px;
@@ -99,22 +117,15 @@ body{
     border-color: rgb(156, 1, 1);
     background-color: hsl(0, 77%, 95%);
 }
+
 .filterSpanButton:active{
     border-color: rgb(214, 214, 214);
 }
-
-#soapBox{
-    background-color: rgb(246, 243, 240);
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 100%;
-    display: flex;
-
-}
 #searchBar{
-    margin-top: 0%;
+    margin-top: 0;
+    width: 100%;
     background-color: rgb(36, 36, 36);
-    height: 50px;
+    height: 10%;
 }
 .enabled{
     visibility: visible;

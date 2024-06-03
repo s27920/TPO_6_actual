@@ -65,8 +65,8 @@
                 <i id ="FilterLogoSpan2" class="fa-solid fa-dollar-sign"></i>
                 Price range</button>
             <div class = "ftListDiv">
-                <input type="checkbox" name = "$$$"; class="priceCheckBox" id="$$$";>
-                <label for="$$$";>$$$</label>
+                <input type="checkbox" name = "$$$" class="priceCheckBox" id="$$$">
+                <label for="$$$">$$$</label>
             </div>
             <div class = "ftListDiv">
                 <input type="checkbox" name = "$$" class="priceCheckBox" id="$$">
@@ -83,7 +83,7 @@
 
 <div id = "searchBar">
     <button id="removeBtn" onclick="removeAllElements()">purge</button>
-    <button id="addBtm" onclick="insertElement()">add</button>
+    <button id="addBtm" onclick="insertElement('','','','','','')">add</button>
     <i id="searchIcon" class="fa-solid fa-magnifying-glass fa-xl"></i>
 </div>
 
@@ -102,9 +102,10 @@
             <button id="rightScrollButton" onclick="scrollRight()" class = "scrollBtn">&gt;</button>
         </div>
     </div>
-    <div>
-        <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13821.795415809722!2d21.049423755571517!3d52.23663889053836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1717341531809!5m2!1spl!2spl" width="800" height="600" style="border:0;z-index: 5;position: relative;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+</div>
+
+<div id = "mainMapDiv">
+    <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13821.795415809722!2d21.049423755571517!3d52.23663889053836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1717341531809!5m2!1spl!2spl" width="800" height="600" style="border:0;z-index: 5;position: relative;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
 <script src="index.js"></script>

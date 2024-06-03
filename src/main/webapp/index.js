@@ -170,6 +170,8 @@ function removeAllElements(){
 function scrollRight() {
     if(extendedDiv){
         toggleSize(extendedDiv, extendedImg, "230px", "345px", "200px", "300px", "196px", "288px");
+        setTimeout(scrollRight, 250);
+        return;
     }
     const list = document.getElementById("enumerate-list");
     const listWidth = list.scrollWidth;
@@ -189,6 +191,8 @@ function scrollRight() {
 function scrollBack(){
     if(extendedDiv){
         toggleSize(extendedDiv, extendedImg, "230px", "345px", "200px", "300px", "196px", "288px");
+        setTimeout(scrollBack, 250);
+        return;
     }
     const list = document.getElementById("enumerate-list");
     const newX = list.scrollLeft - list.clientWidth / 2;
