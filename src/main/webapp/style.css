@@ -190,14 +190,11 @@ body{
     max-width: 92px;
 }
 .ftListDiv{
-    text-align: center;
     display: flex;
     align-items: center;
     text-align: left;
-    display: flex;
-    align-items: center;
     margin: 1px;
-    font-family: "Cabin", Verdana;
+    font-family: "Cabin", Verdana, serif;
     color: rgb(85, 85, 85);
     padding-top: 2px;
     padding-bottom: 2px;
