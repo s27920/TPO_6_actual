@@ -65,8 +65,8 @@ function insertElement(restName, rating, address,iframe,  website, priceRange, z
     mapButton.innerText = "See on map"
     mapButton.style.textAlign = "center";
     mapButton.style.borderRadius = "15px"
-    mapButton.style.backgroundColor = "rgb(232,229,229)";
-    mapButton.style.border = "2px rgb(86,86,86) solid";
+    mapButton.style.backgroundColor = "rgb(246, 243, 240)";
+    mapButton.style.border = "2px rgb(147,147,147) solid";
     mapButton.addEventListener("click",()=>{
         updateMap(iframe);
     });
@@ -77,8 +77,9 @@ function insertElement(restName, rating, address,iframe,  website, priceRange, z
     orderButton.innerText = "Place order"
     orderButton.style.textAlign = "center";
     orderButton.style.borderRadius = "15px"
-    orderButton.style.backgroundColor = "rgb(232,229,229)";
-    orderButton.style.border = "2px rgb(86,86,86) solid";
+    orderButton.style.backgroundColor = "rgb(246, 243, 240)";
+    orderButton.style.border = "2px rgb(147,147,147) solid";
+
     orderButton.addEventListener("click", ()=>{
         window.location.href = website;
     });
@@ -226,10 +227,8 @@ function scrollBack(){
 
 function checkListScrollability(){
     const list = document.getElementById("enumerate-list");
-    if (list.scrollWidth > list.clientWidth){
-        return true;
-    }
-    return false;
+    return list.scrollWidth > list.clientWidth;
+
 }
 document.getElementById("searchButton").addEventListener("click", ()=>{
     search();
@@ -313,24 +312,52 @@ document.getElementById("searchIcon").addEventListener("click", event =>{
 
 document.getElementById("filterButton").addEventListener("click", ()=>{
     let target = document.getElementById("searchOptions");
-    extend(target, "300px", "25px");
+    extend(target, "80px", "25px");
 });
 
+function resizeOptions(){
+    let opts1 = document.getElementById("filterSpanButtonInstance1");
+    let opts2 = document.getElementById("filterSpanButtonInstance1");
+    let opts3 = document.getElementById("filterSpanButtonInstance1");
+    let moved = false;
+    if (opts1.style.height === "200px"){
+        extend(opts1, "200px", "20px")
+        moved = true;
+    }
+    if (opts2.style.height === "100px"){
+        extend(opts1, "100px", "20px")
+        moved = true;
+    }
+    if (opts3.style.height === "300px"){
+        extend(opts1, "300px", "20px")
+        moved = true;
+    }
+    return moved;
+}
+
 function closeOutSearchBar(target){
-    if (target.style.height === "300px" && target.style.top === "0px") {
-        extend(target, "300px", "25px");
+    if (resizeOptions()){
+        setTimeout(()=> {
+            closeOutSearchBar
+        },300);
+    }
+    if (target.style.height === "80px" && target.style.top === "0px") {
+        extend(target, "80px", "25px");
         setTimeout(()=>{
-            slideTmp(target, "-25px");
+            slideTmp(target, "-27px");
         },100);
     }else{
-        slideTmp(target, "-25px")
+        slideTmp(target, "-27px")
     }
 }
+
 
 function extend(target, extended, shrunk){
     if (target.style.height === shrunk || target.style.height==="") {
         target.style.height = extended;
+        target.style.overflow = "visible";
     } else {
+        target.style.overflow = "hidden";
         target.style.height = shrunk;
     }
 }
@@ -348,9 +375,9 @@ document.getElementById("filterSpanButtonInstance1").addEventListener("click", e
 });
 document.getElementById("filterSpanButtonInstance2").addEventListener("click", event=>{
     let target = event.target.parentNode;
-    extend(target, "200px", "20px")
+    extend(target, "100px", "20px")
 });
 document.getElementById("filterSpanButtonInstance3").addEventListener("click", event=>{
     let target = event.target.parentNode;
-    extend(target, "200px", "20px")
+    extend(target, "300px", "20px")
 });

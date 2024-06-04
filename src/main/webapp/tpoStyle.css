@@ -52,15 +52,16 @@ body{
     margin-left: 15px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: whitesmoke;
     height: 25px;
     width:360px;
     position: absolute;
-    top: -25px;
+    top: -27px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     overflow: hidden;
     transition: height 0.2s ease-out, top 0.5s ease-out;
+    background-color: rgb(246, 243, 240);
+    border: 2px rgb(36, 36, 36) solid;
 }
 .disabled{
     visibility: hidden;
@@ -118,9 +119,11 @@ body{
     overflow: hidden;
     background-color: hsl(0, 0%, 95%);
     border-radius: 10px;
-    border: 1px solid hsl(0, 0%, 75%);
+    /*border: 1px solid hsl(0, 0%, 75%);*/
     transition: height 0.2s ease-out;
     height: 20px;
+    border: 1px rgb(147,147,147) solid;
+
 
 }
 .buttonDiv{
@@ -214,7 +217,13 @@ body{
 }
 
 #FilterLogoSpan1, #FilterLogoSpan2, #FilterLogoSpan3{
+    margin-right: 2px;
     color: rgb(84, 84, 84);
     height: 5px;
     pointer-events: none;
+}
+#title{
+    color: whitesmoke;
+    font-size: large;
+    float: left;
 }

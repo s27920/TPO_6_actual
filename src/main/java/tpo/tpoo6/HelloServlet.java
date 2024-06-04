@@ -30,7 +30,10 @@ public class HelloServlet extends HttpServlet {
             ResultSet resultSet = statement.executeQuery(sqlRequest)){
             List<Restaurant> restaurants = new ArrayList<>();
             while (resultSet.next()){
-                restaurants.add(new Restaurant(resultSet));
+                Restaurant restaurant = new Restaurant(resultSet);
+                if (!findByName(restaurants, restaurant.name)){
+                    restaurants.add(restaurant);
+                }
             }
             if (!requestJson.search.replaceAll("\\P{L}", "").isEmpty()){
                 restaurants = filterBySearchTerm(restaurants, requestJson.search);
@@ -63,6 +66,15 @@ public class HelloServlet extends HttpServlet {
             }
         }
         return points/compared.length();
+    }
+
+    private boolean findByName(List<Restaurant> toSearch, String name){
+        for (Restaurant checked : toSearch) {
+            if (checked.name.equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
     private String buildSQLRequest(requestJson json){
         StringBuilder query = new StringBuilder("SELECT * FROM Restaurant");

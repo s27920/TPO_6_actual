@@ -16,40 +16,6 @@
     <hr id="break">
 
     <div id="featureListDiv">
-        <div id = "innerFilterDivInstance1" class = "innerFilterDiv">
-            <button id="filterSpanButtonInstance1" class = "filterSpanButton">
-                <i id ="FilterLogoSpan1" class="fa-solid fa-wifi"></i>
-                Features</button>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Pet Friendly" id="dogFriendly" class="featureCheckBox">
-                <label for="dogFriendly">Pet Friendly</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Wheelchair Accessible" id="wheelchairaccessible" class="featureCheckBox">
-                <label for="wheelchairaccessible">Wheelchair accessible</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Outdoor Seating" id="outdoorseating" class="featureCheckBox">
-                <label for="outdoorseating">Outdoor seating</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Takeout" id="Takeout" class="featureCheckBox">
-                <label for="Takeout">Takeout</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Air conditioning" id="Air conditioning" class="featureCheckBox">
-                <label for="Air conditioning">Air conditioning</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Shopping" id="Shopping" class="featureCheckBox">
-                <label for="Shopping">Shopping</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Outdoor Seating" id="Fast Service" class="featureCheckBox">
-                <label for="outdoorseating">Fast Service</label>
-            </div>
-        </div>
-
         <div id = "innerFilterDivInstance3" class = "innerFilterDiv">
             <button id="filterSpanButtonInstance3" class = "filterSpanButton">
                 <i id ="FilterLogoSpan3" class="fa-solid fa-bowl-food"></i>
@@ -99,6 +65,40 @@
                 <label for="Polish">Polish</label>
             </div>
         </div>
+        <div id = "innerFilterDivInstance1" class = "innerFilterDiv">
+            <button id="filterSpanButtonInstance1" class = "filterSpanButton">
+                <i class="fa-solid fa-umbrella-beach fa-s"></i> Features &#10240;</button>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Pet Friendly" id="dogFriendly" class="featureCheckBox">
+                <label for="dogFriendly">Pet Friendly</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Wheelchair Accessible" id="wheelchairaccessible" class="featureCheckBox">
+                <label for="wheelchairaccessible">Wheelchair accessible</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Outdoor Seating" id="outdoorseating" class="featureCheckBox">
+                <label for="outdoorseating">Outdoor seating</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Takeout" id="Takeout" class="featureCheckBox">
+                <label for="Takeout">Takeout</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Air conditioning" id="Air conditioning" class="featureCheckBox">
+                <label for="Air conditioning">Air conditioning</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Shopping" id="Shopping" class="featureCheckBox">
+                <label for="Shopping">Shopping</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Outdoor Seating" id="Fast Service" class="featureCheckBox">
+                <label for="outdoorseating">Fast Service</label>
+            </div>
+        </div>
+
+
 
         <div id = "innerFilterDivInstance2" class = "innerFilterDiv">
             <button id="filterSpanButtonInstance2" class = "filterSpanButton">
@@ -122,9 +122,8 @@
 </div>
 
 <div id = "searchBar">
-    <button id="removeBtn" onclick="removeAllElements()">purge</button>
-    <button id="addBtm" onclick="insertElement('Dragon Delight','','','','','','')">add</button>
     <i id="searchIcon" class="fa-solid fa-magnifying-glass fa-xl"></i>
+    <span id = "title" style="color: rgb(246, 243, 240);margin-top: auto;margin-bottom: auto;margin-left: 0.5vw; font-family: 'Roboto Mono',Verdana,serif; font-size: 4vh; float: left"> Restaurants in Warsaw</span>
 </div>
 
 <div id="semi-Body">
