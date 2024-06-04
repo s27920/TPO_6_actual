@@ -22,11 +22,7 @@
                 Features</button>
             <div class = "ftListDiv">
                 <input type="checkbox" name="Pet Friendly" id="dogFriendly" class="featureCheckBox">
-                <label for="dogFriendly">Dog friendly</label>
-            </div>
-            <div class = "ftListDiv">
-                <input type="checkbox" name="Free Wi-Fi" id="freewifi" class="featureCheckBox">
-                <label for="freewifi">Free wifi</label>
+                <label for="dogFriendly">Pet Friendly</label>
             </div>
             <div class = "ftListDiv">
                 <input type="checkbox" name="Wheelchair Accessible" id="wheelchairaccessible" class="featureCheckBox">
@@ -35,6 +31,22 @@
             <div class = "ftListDiv">
                 <input type="checkbox" name="Outdoor Seating" id="outdoorseating" class="featureCheckBox">
                 <label for="outdoorseating">Outdoor seating</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Takeout" id="Takeout" class="featureCheckBox">
+                <label for="Takeout">Takeout</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Air conditioning" id="Air conditioning" class="featureCheckBox">
+                <label for="Air conditioning">Air conditioning</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Shopping" id="Shopping" class="featureCheckBox">
+                <label for="Shopping">Shopping</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name="Outdoor Seating" id="Fast Service" class="featureCheckBox">
+                <label for="outdoorseating">Fast Service</label>
             </div>
         </div>
 
@@ -57,6 +69,34 @@
             <div class = "ftListDiv">
                 <input type="checkbox" name = "Georgian" class="cuisineCheckBox" id = "Georgian">
                 <label for="Georgian">Georgian</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Balkan" class="cuisineCheckBox" id = "Balkan">
+                <label for="Balkan">Balkan</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Mexican" class="cuisineCheckBox" id = "Mexican">
+                <label for="Mexican">Mexican</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Greek" class="cuisineCheckBox" id = "Greek">
+                <label for="Greek">Greek</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Chinese" class="cuisineCheckBox" id = "Chinese">
+                <label for="Chinese">Chinese</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Turkish" class="cuisineCheckBox" id = "Turkish">
+                <label for="Turkish">Turkish</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Breakfast" class="cuisineCheckBox" id = "Breakfast">
+                <label for="Breakfast">Breakfast</label>
+            </div>
+            <div class = "ftListDiv">
+                <input type="checkbox" name = "Polish" class="cuisineCheckBox" id = "Polish">
+                <label for="Polish">Polish</label>
             </div>
         </div>
 

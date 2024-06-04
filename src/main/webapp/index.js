@@ -130,24 +130,25 @@ function toggleSize(newDiv, imgProper, nh1, nh2, nw1, nw2, iw1, iw2, ih1, ih2){
         newDiv.style.zIndex = '10';
         toggleVisibleDic(newDiv, "visible")
         imgProper.style.width = iw2;
-        imgProper.style.height = ih2
+        imgProper.style.height = ih2;
         newDiv.style.height = nh2;
         newDiv.style.width = nw2;
         newDiv.style.transform = "translate(" + slide +"px, 0px)"
     }else{
-        toggleVisibleDic(newDiv, "hidden")
-        imgProper.style.width = iw1;
+        let localTmp = placeHolderDiv;
+        placeHolderDiv = null;
         imgProper.style.height = ih1;
+        imgProper.style.width = iw1;
         newDiv.style.height = nh1;
         newDiv.style.width = nw1;
         newDiv.style.transform = "translate(0px, 0px)"
-        let localTmp = placeHolderDiv;
-        placeHolderDiv = null;
+        toggleVisibleDic(newDiv, "hidden")
         setTimeout(()=>{
             newDiv.style.left = ""
             newDiv.style.zIndex = '1';
             newDiv.style.position = "relative";
             localTmp.parentNode.removeChild(localTmp);
+
         },300);
     }
     if (extendedDiv === newDiv) {
