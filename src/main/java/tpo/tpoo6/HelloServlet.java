@@ -10,32 +10,24 @@ import com.google.gson.Gson;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
-    private String message;
-
     public void init() {
-        message = "huh";
+        dbInit.initDb();
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
     }
     public void destroy() {
     }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         BufferedReader reader = request.getReader();
         String json = reader.lines().collect(Collectors.joining());
         requestJson requestJson = new Gson().fromJson(json, HelloServlet.requestJson.class);
         String sqlRequest = buildSQLRequest(requestJson);
-        try(Connection connection = DriverManager.getConnection(Setup.DBString);
+        try(Connection connection = DriverManager.getConnection(dbInit.dbPath);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlRequest);){
+            ResultSet resultSet = statement.executeQuery(sqlRequest)){
             List<Restaurant> restaurants = new ArrayList<>();
             while (resultSet.next()){
                 restaurants.add(new Restaurant(resultSet));
@@ -43,40 +35,17 @@ public class HelloServlet extends HttpServlet {
             if (!requestJson.search.replaceAll("\\P{L}", "").isEmpty()){
                 restaurants = filterBySearchTerm(restaurants, requestJson.search);
             }
-            response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
+            System.out.println(sqlRequest);
             response.getWriter().write(new Gson().toJson(restaurants));
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("there you broke it. Happy?");
         }
+        System.out.println("responded");
     }
 
-    private List<Restaurant> filterBySearchTerm(List<Restaurant> restaurants, String search){
-        List<Restaurant> filtered = new ArrayList<>();
-        for (Restaurant restaurant : restaurants) {
-            if (isValidSearchTermFor(search, restaurant.name)){
-                filtered.add(restaurant);
-            }
-        }
-        if (filtered.size() > 0){
-            return filtered;
-        }
-        return restaurants;
-    }
-
-    private boolean isValidSearchTermFor(String searchTerm, String field){
-        for (String fieldPart:field.split("\\P{L}")) {
-            double v = compareStringLikeness(searchTerm, fieldPart);
-            System.out.println(searchTerm);
-            System.out.println(field);
-            System.out.println(v);
-            if (v > 0.65){
-                return true;
-            }
-        }
-        return false;
-    }
     private double compareStringLikeness(String toCompare, String compared){
         toCompare = toCompare.toLowerCase();
         compared = compared.toLowerCase();
@@ -95,7 +64,6 @@ public class HelloServlet extends HttpServlet {
         }
         return points/compared.length();
     }
-
     private String buildSQLRequest(requestJson json){
         StringBuilder query = new StringBuilder("SELECT * FROM Restaurant");
         if (json.features.length > 0){
@@ -110,6 +78,7 @@ public class HelloServlet extends HttpServlet {
         subQueries(json.features, query);
         return query.toString();
     }
+
     private StringBuilder chainSQLWhere(String[] arr, int nextLen, StringBuilder query, String whereSubject, String operator){
         //I know this looks bad but I actually cooked here
         int length = arr.length;
@@ -135,6 +104,31 @@ public class HelloServlet extends HttpServlet {
         }
         return query;
     }
+    private List<Restaurant> filterBySearchTerm(List<Restaurant> restaurants, String search){
+        List<Restaurant> filtered = new ArrayList<>();
+        for (Restaurant restaurant : restaurants) {
+            if (isValidSearchTermFor(search, restaurant.name)){
+                filtered.add(restaurant);
+            }
+        }
+        if (filtered.size() > 0){
+            return filtered;
+        }
+        return restaurants;
+    }
+
+    private boolean isValidSearchTermFor(String searchTerm, String field){
+        for (String fieldPart:field.split("\\P{L}")) {
+            double v = compareStringLikeness(searchTerm, fieldPart);
+            System.out.println(searchTerm);
+            System.out.println(field);
+            System.out.println(v);
+            if (v > 0.65){
+                return true;
+            }
+        }
+        return false;
+    }
     private StringBuilder subQueries(String[] arr, StringBuilder query){
         int length = arr.length;
         if (length > 0){
@@ -153,14 +147,13 @@ public class HelloServlet extends HttpServlet {
         }
         return query;
     }
-
     class requestJson{
+
         String search;
         String[] features;
         String[] cuisines;
         String[] prices;
     }
-
     class returnJson{
         String name;
         String address;
@@ -168,32 +161,31 @@ public class HelloServlet extends HttpServlet {
         String zip_code;
         double rating;
         String price_range;
-        double lat;
-        double lon;
     }
-
     //DTO
     class Restaurant {
-        private int restaurantId;
-        private String name;
-        private String address;
-        private String website;
-        private String zipCode;
-        private float rating;
-        private String priceRange;
-        private double lat;
-        private double lon;
+
+        private final int restaurantId;
+        private final String name;
+        private final String address;
+        private final String iframe;
+        private final String website;
+        private final String zipCode;
+        private final float rating;
+        private final String priceRange;
 
         public Restaurant(ResultSet resultSet) throws SQLException {
+            System.out.println("called");
             this.restaurantId = resultSet.getInt("restaurant_id");
-            this.name = resultSet.getString("name");
+            String name1 = resultSet.getString("name");
+            System.out.println(name1);
+            this.name = name1;
             this.address = resultSet.getString("address");
+            this.iframe = resultSet.getString("iframe");
             this.website = resultSet.getString("website");
             this.zipCode = resultSet.getString("zip_code");
             this.rating = resultSet.getFloat("rating");
             this.priceRange = resultSet.getString("price_range");
-            this.lat = resultSet.getDouble("lat");
-            this.lon = resultSet.getDouble("lon");
         }
     }
 }

@@ -1,13 +1,12 @@
-
-
 turnButtonsOffOn("hidden");
 let extendedDiv;
 let extendedImg;
 let placeHolderDiv;
+fetchFromServer("",[],[],[]);
 
-function insertElement(restName, rating, address, website, priceRange, zipCode){
+function insertElement(restName, rating, address,iframe,  website, priceRange, zipCode){
     let path = "stars/"+ setRating(rating) + ".png";
-    let imgPath = "images/"+restName+".jpg";
+    let imgPath = "imgs/"+restName+".jpg";
 
     const newDiv = document.createElement("div");
     newDiv.style.textAlign = "left";
@@ -24,6 +23,9 @@ function insertElement(restName, rating, address, website, priceRange, zipCode){
     const imgProper = document.createElement("img");
     imgProper.src = imgPath;
     imgProper.style.width = "192px";
+    if (imgProper.style.height !== "128px"){
+        imgProper.style.height = "128px"
+    }
     imgProper.style.borderRadius = "6px";
     imgProper.style.transition = "height 0.14s ease-in-out, width 0.14s ease-in-out";
     img.append(imgProper);
@@ -31,7 +33,7 @@ function insertElement(restName, rating, address, website, priceRange, zipCode){
     const newh3 = document.createElement("h3");
     newh3.style.margin = "10px";
     newh3.style.fontFamily = "Dosis";
-    newh3.style.fontSize = "25px";
+    newh3.style.fontSize = "15px";
     newh3.style.borderBottom = "2px hsl(0, 0%, 76%) solid"
     newh3.innerText = restName;
     newDiv.append(newh3);
@@ -42,41 +44,50 @@ function insertElement(restName, rating, address, website, priceRange, zipCode){
     starRating.style.marginTop = "-20px";
     newDiv.append(starRating);
 
-    let resizedPar = document.createElement("div");
-
     let par = document.createElement("p");
     par.innerText = address;
     par.className = "tileText";
     newDiv.append(par);
 
-    let parHidden = document.createElement("p");
-    parHidden.innerText =  zipCode.substring(0,2) + "-" + zipCode.substring(2,zipCode.length+1)+ "\n" +priceRange;
-    parHidden.className = "tileText";
+    let utilDiv = document.createElement("div");
+    utilDiv.style.width = "300px";
+    utilDiv.style.height = "69px";
+    utilDiv.style.overflow = "hidden";
+    // utilDiv.style.backgroundColor = "blue";
+    utilDiv.style.visibility = "hidden";
+    utilDiv.style.display = "flex";
+    utilDiv.style.flexDirection = "row";
+    utilDiv.style.justifyContent = "space-evenly";
+    utilDiv.style.marginTop = "-20px";
+    let mapButton = document.createElement("button");
+    mapButton.style.width = "120px"
+    mapButton.style.height = "35px"
+    mapButton.innerText = "See on map"
+    mapButton.style.textAlign = "center";
+    mapButton.style.borderRadius = "15px"
+    mapButton.style.backgroundColor = "rgb(232,229,229)";
+    mapButton.style.border = "2px rgb(86,86,86) solid";
+    mapButton.addEventListener("click",()=>{
+        updateMap(iframe);
+    });
 
-    let mapDiv = document.createElement("div");
-    let mapImg = document.createElement("img");
-    mapImg.src = "src/main/webapp/images/placeholder.png";
-    mapDiv.style.float = "right";
-    let mapUpdateButton = document.createElement("p");
-    mapUpdateButton.innerText = "See on map";
-    mapUpdateButton.style.textAlign = "left";
-    mapUpdateButton.style.fontFamily = "'Cabin', Verdana, serif";
-    mapUpdateButton.style.marginTop = "0";
-    mapUpdateButton.style.marginLeft = "15px";
-    mapUpdateButton.style.marginBottom = "5px";
-    mapUpdateButton.style.color = "#3a0b9e";
-    mapUpdateButton.style.textDecoration = "underline";
-    mapUpdateButton.addEventListener("click", ()=>{
-        //hardcoded for testing TODO remove later
-        updateMap("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d215.99793089017265!2d20.994179630340053!3d52.22998447352774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc85d2f64dc3%3A0xe35f891e106337b4!2sMiss%20Kimchi!5e0!3m2!1spl!2spl!4v1717365718913!5m2!1spl!2spl");
-    })
-    mapDiv.append(mapImg);
-    mapDiv.append(mapUpdateButton);
-//TODO pls finish
-    resizedPar.append(parHidden);
-    resizedPar.append(mapDiv);
-    resizedPar.style.visibility = "hidden";
-    newDiv.append(resizedPar);
+    let orderButton = document.createElement("button");
+    orderButton.style.width = "115px"
+    orderButton.style.height = "35px"
+    orderButton.innerText = "Place order"
+    orderButton.style.textAlign = "center";
+    orderButton.style.borderRadius = "15px"
+    orderButton.style.backgroundColor = "rgb(232,229,229)";
+    orderButton.style.border = "2px rgb(86,86,86) solid";
+    orderButton.addEventListener("click", ()=>{
+        window.location.href = website;
+    });
+    if (website !== 'unavailable'){
+        utilDiv.append(orderButton);
+    }
+    utilDiv.append(mapButton);
+
+    newDiv.append(utilDiv);
 
 
     const newLi = document.createElement("li");
@@ -87,7 +98,7 @@ function insertElement(restName, rating, address, website, priceRange, zipCode){
         turnButtonsOffOn("visible");
     }
     newDiv.addEventListener("click", ()=>{
-        toggleSize(newDiv, imgProper, "230px", "345px", "200px", "300px", "196px", "288px");
+        toggleSize(newDiv, imgProper, "230px", "330px", "200px", "300px", "196px", "288px", "128px", "194px");
     }, {passive: true});
 }
 
@@ -95,7 +106,7 @@ function updateMap(link){
     document.getElementById("map").src=link;
 }
 
-function toggleSize(newDiv, imgProper, nh1, nh2, nw1, nw2, iw1, iw2){
+function toggleSize(newDiv, imgProper, nh1, nh2, nw1, nw2, iw1, iw2, ih1, ih2){
     if (extendedDiv && extendedDiv !== newDiv) {
         toggleSize(extendedDiv, extendedImg, nh1, nh2, nw1, nw2, iw1, iw2);
     }
@@ -119,12 +130,14 @@ function toggleSize(newDiv, imgProper, nh1, nh2, nw1, nw2, iw1, iw2){
         newDiv.style.zIndex = '10';
         toggleVisibleDic(newDiv, "visible")
         imgProper.style.width = iw2;
+        imgProper.style.height = ih2
         newDiv.style.height = nh2;
         newDiv.style.width = nw2;
         newDiv.style.transform = "translate(" + slide +"px, 0px)"
     }else{
         toggleVisibleDic(newDiv, "hidden")
         imgProper.style.width = iw1;
+        imgProper.style.height = ih1;
         newDiv.style.height = nh1;
         newDiv.style.width = nw1;
         newDiv.style.transform = "translate(0px, 0px)"
@@ -169,7 +182,7 @@ function removeAllElements(){
 
 function scrollRight() {
     if(extendedDiv){
-        toggleSize(extendedDiv, extendedImg, "230px", "345px", "200px", "300px", "196px", "288px");
+        toggleSize(extendedDiv, extendedImg, "230px", "330px", "200px", "300px", "196px", "288px", "128px", "194px");
         setTimeout(scrollRight, 250);
         return;
     }
@@ -190,7 +203,7 @@ function scrollRight() {
 }
 function scrollBack(){
     if(extendedDiv){
-        toggleSize(extendedDiv, extendedImg, "230px", "345px", "200px", "300px", "196px", "288px");
+        toggleSize(extendedDiv, extendedImg, "230px", "330px", "200px", "300px", "196px", "288px", "128px", "194px");
         setTimeout(scrollBack, 250);
         return;
     }
@@ -246,7 +259,9 @@ function search(){
         }
     });
     closeOutSearchBar(document.getElementById("searchOptions"));
-
+    fetchFromServer(searchPhrase, featuresChecked, cusinesChecked, pricesChecked);
+}
+function fetchFromServer(searchPhrase, featuresChecked, cusinesChecked, pricesChecked){
     const requestJson ={
         search: searchPhrase,
         features: featuresChecked,
@@ -266,9 +281,10 @@ function search(){
         .then(result => {
             removeAllElements();
             result.forEach(restaurant =>{
-                insertElement(restaurant.name, restaurant.rating, restaurant.address, restaurant.website, restaurant.priceRange, restaurant.zipCode);
+                insertElement(restaurant.name, restaurant.rating, restaurant.address, restaurant.iframe, restaurant.website, restaurant.priceRange, restaurant.zipCode);
             });
             console.log('Success:', result);
+            return true;
         })
         .catch(error => {
             console.error('Error:', error);
